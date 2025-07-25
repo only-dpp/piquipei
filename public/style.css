@@ -238,6 +238,68 @@ body {
     text-decoration: none;
 }
 
+.confirmation-options {
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.confirmation-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.confirmation-item:hover {
+    background-color: #f9f9f9;
+}
+
+.confirmation-icon {
+    margin-right: 16px;
+    color: #238662;
+    display: flex;
+    align-items: center;
+}
+
+.confirmation-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.confirmation-text {
+    flex-grow: 1;
+}
+
+.confirmation-text strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+.confirmation-text small {
+    font-size: 14px;
+    color: #757575;
+}
+
+.confirmation-arrow {
+    font-size: 24px;
+    color: #757575;
+    font-weight: 300;
+}
+
+/* Alteração no botão de empréstimos para funcionar como link */
+.btn-emprestimos {
+    display: block;
+    text-align: center;
+    text-decoration: none;
+}
+
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .right-panel {

