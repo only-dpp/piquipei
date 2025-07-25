@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 // 1. Importar bibliotecas
 const express = require('express');
 const cors = require('cors');
