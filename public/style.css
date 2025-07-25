@@ -62,7 +62,7 @@ body {
 .btn-entrar {
     width: 100%;
     padding: 16px;
-    background-color: #238662; /* Cor ajustada para o verde PicPay original */
+    background-color: #238662;
     border: none;
     border-radius: 8px;
     color: white;
@@ -74,7 +74,7 @@ body {
 }
 
 .btn-entrar:hover {
-    background-color: #238662;
+    background-color: #1e7a56;
 }
 
 .forgot-password {
@@ -117,6 +117,9 @@ body {
     font-weight: 600;
     cursor: pointer;
     transition: background-color 0.3s;
+    display: block;
+    text-align: center;
+    text-decoration: none;
 }
 
 .btn-emprestimos:hover {
@@ -140,6 +143,113 @@ body {
     background-image: url('https://auth2.picpay.com/auth/resources/prxya/login/internet-banking-pf/dist/theme/assets/images/brand.png');
     background-size: cover;
     background-position: center;
+}
+
+.right-panel.emprestimos-bg {
+    background-image: url('https://meus-emprestimos.picpay.com./assets/images/mulher_deitada_celular.jpg');
+}
+
+.description-text {
+    font-size: 16px;
+    line-height: 1.6;
+    color: #5f5f5f;
+    margin-bottom: 32px;
+}
+
+.input-label {
+    font-size: 14px;
+    font-weight: 500;
+    color: #5f5f5f;
+    display: block;
+    margin-bottom: 8px;
+}
+
+.footer-text-single {
+    font-size: 12px;
+    color: #757575;
+    margin-top: 24px;
+    text-align: center;
+}
+
+.footer-text-single a {
+    color: #238662;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+/* --- ESTILOS PÁGINA DE CONFIRMAÇÃO --- */
+.confirmation-options {
+    margin-top: 24px;
+    margin-bottom: 32px;
+}
+
+.confirmation-item {
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    color: inherit;
+    transition: background-color 0.2s ease-in-out;
+    cursor: pointer;
+}
+
+.confirmation-item:hover {
+    background-color: #f9f9f9;
+}
+
+.confirmation-icon {
+    margin-right: 16px;
+    color: #238662;
+    display: flex;
+    align-items: center;
+}
+
+.confirmation-icon svg {
+    width: 24px;
+    height: 24px;
+}
+
+.confirmation-text {
+    flex-grow: 1;
+}
+
+.confirmation-text strong {
+    display: block;
+    font-size: 16px;
+    font-weight: 600;
+    color: #2c2c2c;
+}
+
+.confirmation-text small {
+    font-size: 14px;
+    color: #757575;
+}
+
+.confirmation-arrow {
+    font-size: 24px;
+    color: #757575;
+    font-weight: 300;
+}
+
+/* --- ESTILOS PÁGINA DE TOKEN --- */
+.reenviar-link {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #238662;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.reenviar-link.disabled {
+    color: #b0b0b0;
+    cursor: not-allowed;
+    pointer-events: none;
 }
 
 /* --- ESTILOS DO MODAL --- */
@@ -200,449 +310,6 @@ body {
     color: #757575;
     font-size: 14px;
     line-height: 1.6;
-}
-
-/* Adicione estas novas regras ao final do seu style.css */
-
-/* Novo painel de fundo para a página de empréstimos */
-.right-panel.emprestimos-bg {
-    background-image: url('https://meus-emprestimos.picpay.com./assets/images/mulher_deitada_celular.jpg');
-}
-
-/* Estilos específicos para a página de empréstimos */
-.description-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #5f5f5f;
-    margin-bottom: 32px;
-}
-
-.input-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #5f5f5f;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.footer-text-single {
-    font-size: 12px;
-    color: #757575;
-    margin-top: 24px;
-    text-align: center;
-}
-
-.footer-text-single a {
-    color: #238662;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.confirmation-options {
-    margin-top: 24px;
-    margin-bottom: 32px;
-}
-
-.confirmation-item {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.confirmation-item:hover {
-    background-color: #f9f9f9;
-}
-
-.confirmation-icon {
-    margin-right: 16px;
-    color: #238662;
-    display: flex;
-    align-items: center;
-}
-
-.confirmation-icon svg {
-    width: 24px;
-    height: 24px;
-}
-
-.confirmation-text {
-    flex-grow: 1;
-}
-
-.confirmation-text strong {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #2c2c2c;
-}
-
-.confirmation-text small {
-    font-size: 14px;
-    color: #757575;
-}
-
-.confirmation-arrow {
-    font-size: 24px;
-    color: #757575;
-    font-weight: 300;
-}
-
-/* Alteração no botão de empréstimos para funcionar como link */
-.btn-emprestimos {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.reenviar-link {
-    display: block;
-    text-align: center;
-    margin-top: 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #238662;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.reenviar-link.disabled {
-    color: #b0b0b0;
-    cursor: not-allowed;
-    pointer-events: none; 
-}
-
-/* Media Queries para Responsividade */
-@media (max-width: 768px) {
-    .right-panel {
-        display: none;
-    }
-    .left-panel {
-        flex-basis: 100%;
-    }
-=======
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-body {
-    font-family: 'Inter', sans-serif;
-    display: flex;
-    height: 100vh;
-    background-color: #f0f0f0;
-}
-
-.login-container {
-    display: flex;
-    width: 100%;
-    height: 100%;
-}
-
-.left-panel {
-    flex-basis: 50%;
-    background-color: #ffffff;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 2rem;
-}
-
-.login-content {
-    width: 100%;
-    max-width: 360px;
-}
-
-.logo {
-    width: 110px;
-    margin-bottom: 48px;
-}
-
-.login-content h1 {
-    font-size: 24px;
-    font-weight: 700;
-    font-family: Inter, -apple-system, San Francisco, blinkmacsystemfont, Segoe UI, Helvetica Neue, helvetica, arial, sans-serif;
-    color: #2c2c2c;
-    margin-bottom: 32px;
-}
-
-.input-field {
-    width: 100%;
-    padding: 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 16px;
-    font-size: 16px;
-}
-
-.input-field::placeholder {
-    color: #757575;
-}
-
-.btn-entrar {
-    width: 100%;
-    padding: 16px;
-    background-color: #238662; /* Cor ajustada para o verde PicPay original */
-    border: none;
-    border-radius: 8px;
-    color: white;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-    margin-top: 8px;
-    transition: background-color 0.3s;
-}
-
-.btn-entrar:hover {
-    background-color: #238662;
-}
-
-.forgot-password {
-    display: block;
-    text-align: center;
-    margin-top: 24px;
-    color: #238662;
-    font-size: 14px;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.contracts-section {
-    margin-top: 64px;
-    padding-top: 32px;
-    border-top: 1px solid #f0f0f0;
-}
-
-.contracts-section h2 {
-    font-size: 18px;
-    font-weight: 600;
-    color: #2c2c2c;
-    margin-bottom: 8px;
-}
-
-.contracts-section p {
-    font-size: 14px;
-    color: #757575;
-    margin-bottom: 24px;
-}
-
-.btn-emprestimos {
-    width: 100%;
-    padding: 16px;
-    background-color: #f0f3f5;
-    border: none;
-    border-radius: 28px;
-    color: #238662;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.btn-emprestimos:hover {
-    background-color: #e6e9eb;
-}
-
-.footer-text {
-    font-size: 12px;
-    color: #757575;
-    margin-top: 32px;
-}
-
-.footer-text a {
-    color: #238662;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.right-panel {
-    flex-basis: 50%;
-    background-image: url('https://auth2.picpay.com/auth/resources/prxya/login/internet-banking-pf/dist/theme/assets/images/brand.png');
-    background-size: cover;
-    background-position: center;
-}
-
-/* --- ESTILOS DO MODAL --- */
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.6);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0;
-    visibility: hidden;
-    transition: opacity 0.3s, visibility 0.3s;
-    z-index: 1000;
-}
-
-.modal-overlay.active {
-    opacity: 1;
-    visibility: visible;
-}
-
-.modal {
-    background: white;
-    padding: 32px 24px;
-    border-radius: 12px;
-    max-width: 450px;
-    width: 90%;
-    position: relative;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-    transform: translateY(-20px);
-    transition: transform 0.3s;
-}
-
-.modal-overlay.active .modal {
-    transform: translateY(0);
-}
-
-.modal-close-btn {
-    position: absolute;
-    top: 10px;
-    right: 15px;
-    background: none;
-    border: none;
-    font-size: 28px;
-    color: #888;
-    cursor: pointer;
-}
-
-.modal-content-container h2 {
-    color: #2c2c2c;
-    margin-bottom: 16px;
-}
-
-.modal-content-container p {
-    color: #757575;
-    font-size: 14px;
-    line-height: 1.6;
-}
-
-/* Adicione estas novas regras ao final do seu style.css */
-
-/* Novo painel de fundo para a página de empréstimos */
-.right-panel.emprestimos-bg {
-    background-image: url('https://meus-emprestimos.picpay.com./assets/images/mulher_deitada_celular.jpg');
-}
-
-/* Estilos específicos para a página de empréstimos */
-.description-text {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #5f5f5f;
-    margin-bottom: 32px;
-}
-
-.input-label {
-    font-size: 14px;
-    font-weight: 500;
-    color: #5f5f5f;
-    display: block;
-    margin-bottom: 8px;
-}
-
-.footer-text-single {
-    font-size: 12px;
-    color: #757575;
-    margin-top: 24px;
-    text-align: center;
-}
-
-.footer-text-single a {
-    color: #238662;
-    font-weight: 600;
-    text-decoration: none;
-}
-
-.confirmation-options {
-    margin-top: 24px;
-    margin-bottom: 32px;
-}
-
-.confirmation-item {
-    display: flex;
-    align-items: center;
-    padding: 16px;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    margin-bottom: 12px;
-    text-decoration: none;
-    color: inherit;
-    transition: background-color 0.2s ease-in-out;
-}
-
-.confirmation-item:hover {
-    background-color: #f9f9f9;
-}
-
-.confirmation-icon {
-    margin-right: 16px;
-    color: #238662;
-    display: flex;
-    align-items: center;
-}
-
-.confirmation-icon svg {
-    width: 24px;
-    height: 24px;
-}
-
-.confirmation-text {
-    flex-grow: 1;
-}
-
-.confirmation-text strong {
-    display: block;
-    font-size: 16px;
-    font-weight: 600;
-    color: #2c2c2c;
-}
-
-.confirmation-text small {
-    font-size: 14px;
-    color: #757575;
-}
-
-.confirmation-arrow {
-    font-size: 24px;
-    color: #757575;
-    font-weight: 300;
-}
-
-/* Alteração no botão de empréstimos para funcionar como link */
-.btn-emprestimos {
-    display: block;
-    text-align: center;
-    text-decoration: none;
-}
-
-.reenviar-link {
-    display: block;
-    text-align: center;
-    margin-top: 24px;
-    font-size: 14px;
-    font-weight: 600;
-    color: #238662;
-    text-decoration: none;
-    transition: color 0.3s;
-}
-
-.reenviar-link.disabled {
-    color: #b0b0b0;
-    cursor: not-allowed;
-    pointer-events: none; 
 }
 
 /* Media Queries para Responsividade */

@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
@@ -25,7 +24,7 @@
                 <div class="contracts-section">
                     <h2>Gerencie seus contratos</h2>
                     <p>Acesse seus Empréstimos sem precisar de conta.</p>
-                    <button id="btnAcessarEmprestimos" class="btn-emprestimos" onclick="window.open('emprestimos.html', '_blank')">Acessar empréstimos</button>
+                    <a href="emprestimos.html" class="btn-emprestimos">Acessar empréstimos</a>
                 </div>
 
                 <div class="footer-text">
@@ -37,13 +36,11 @@
         <div class="right-panel"></div>
     </div>
 
-    <!-- Estrutura do Modal (invisível por padrão) -->
+    <!-- Estrutura do Modal -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal">
             <button class="modal-close-btn">×</button>
-            <div id="modalContent" class="modal-content-container">
-                <!-- O conteúdo do modal será injetado aqui pelo JavaScript -->
-            </div>
+            <div id="modalContent" class="modal-content-container"></div>
         </div>
     </div>
 

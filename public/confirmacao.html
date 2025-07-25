@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="shortcut icon" href="https://auth2.picpay.com/auth/resources/prxya/login/internet-banking-pf/dist/theme/assets/images/favicon.png" type="image/x-icon">
     <title>Confirmação - PicPay</title>
 </head>
@@ -20,36 +20,21 @@
                 </p>
 
                 <div class="confirmation-options">
-                    <a href="#" class="confirmation-item">
-                        <div class="confirmation-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h6v6H4V4zm0 10h6v6H4v-6zM14 4h6v6h-6V4zm0 10h6v6h-6v-6z" fill="#238662"></path></svg>
-                        </div>
-                        <div class="confirmation-text">
-                            <strong>Por QR Code</strong>
-                            <small>Via aplicativo PicPay</small>
-                        </div>
+                    <div class="confirmation-item">
+                        <div class="confirmation-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M4 4h6v6H4V4zm0 10h6v6H4v-6zM14 4h6v6h-6V4zm0 10h6v6h-6v-6z" fill="#238662"></path></svg></div>
+                        <div class="confirmation-text"><strong>Por QR Code</strong><small>Via aplicativo PicPay</small></div>
                         <span class="confirmation-arrow">></span>
-                    </a>
-                    <a href="#" class="confirmation-item">
-                        <div class="confirmation-icon">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#238662"></path></svg>
-                        </div>
-                        <div class="confirmation-text">
-                            <strong>Por E-mail</strong>
-                            <small>j***********8@g***l.com</small>
-                        </div>
+                    </div>
+                    <div class="confirmation-item">
+                        <div class="confirmation-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z" fill="#238662"></path></svg></div>
+                        <div class="confirmation-text"><strong>Por E-mail</strong><small>j***********8@g***l.com</small></div>
                         <span class="confirmation-arrow">></span>
-                    </a>
-                    <a href="#" class="confirmation-item">
-                        <div class="confirmation-icon">
-                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 00-9.95 9.08 1.15 1.15 0 00.95 1.42h.01a1.2 1.2 0 001.2-1.07A7.5 7.5 0 0119.5 12a1.5 1.5 0 002.57-1A10 10 0 0012 2zm0 20a9.95 9.95 0 009.95-9.08 1.15 1.15 0 00-.95-1.42h-.01a1.2 1.2 0 00-1.2 1.07A7.5 7.5 0 014.5 12a1.5 1.5 0 00-2.57 1A10 10 0 0012 22z" fill="#238662"></path></svg>
-                        </div>
-                        <div class="confirmation-text">
-                            <strong>Por SMS</strong>
-                            <small>(**) *****-7610</small>
-                        </div>
+                    </div>
+                    <div class="confirmation-item">
+                        <div class="confirmation-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2a10 10 0 00-9.95 9.08 1.15 1.15 0 00.95 1.42h.01a1.2 1.2 0 001.2-1.07A7.5 7.5 0 0119.5 12a1.5 1.5 0 002.57-1A10 10 0 0012 2zm0 20a9.95 9.95 0 009.95-9.08 1.15 1.15 0 00-.95-1.42h-.01a1.2 1.2 0 00-1.2 1.07A7.5 7.5 0 014.5 12a1.5 1.5 0 00-2.57 1A10 10 0 0012 22z" fill="#238662"></path></svg></div>
+                        <div class="confirmation-text"><strong>Por SMS</strong><small>(**) *****-7610</small></div>
                         <span class="confirmation-arrow">></span>
-                    </a>
+                    </div>
                 </div>
 
                 <div class="contracts-section">
@@ -67,6 +52,7 @@
         <div class="right-panel emprestimos-bg"></div>
     </div>
 
+    <!-- Estrutura do Modal -->
     <div id="modalOverlay" class="modal-overlay">
         <div class="modal">
             <button class="modal-close-btn">×</button>
@@ -74,6 +60,6 @@
         </div>
     </div>
     
-    <script src="../script.js"></script> 
+    <script src="script.js"></script> 
 </body>
 </html>
