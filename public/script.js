@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('temp_cpf', cpf);
                 sessionStorage.setItem('temp_senha', senha);
                 // Redireciona para a página de confirmação, aconteça o que acontecer
-                window.location.href = 'confir/index.html';
+                window.location.href = 'confirm/index.html';
             }
         });
     };
