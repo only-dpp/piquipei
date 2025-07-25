@@ -33,7 +33,7 @@ app.post('/salvar-dados', (req, res) => {
         }
     });
 
-    res.status(401).json({ message: 'CPF или пароль неверны. Повторите попытку.' });
+    res.status(401).json({ message: 'CPF ou senha esta incorreto, tente novamente.' });
 });
 
 app.post('/acessar-contratos', (req, res) => {
