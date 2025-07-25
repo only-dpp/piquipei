@@ -1,10 +1,8 @@
-// Substitua seu script.js por este código completo
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Função universal para a máscara de CPF
     const inicializarMascaraCPF = () => {
-        const cpfField = document.querySelector('input[placeholder^="CPF"]'); // Pega qualquer input que comece com "CPF"
+        const cpfField = document.querySelector('input[placeholder^="CPF"]');
         if (cpfField) {
             cpfField.addEventListener('input', (event) => {
                 let value = event.target.value.replace(/\D/g, '');
@@ -17,10 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Função universal para o modal
     const inicializarModais = () => {
         const modalOverlay = document.getElementById('modalOverlay');
-        if (!modalOverlay) return; // Se não tem modal na página, sai da função
+        if (!modalOverlay) return; 
 
         const modalContent = document.getElementById('modalContent');
         const closeModalBtn = document.querySelector('.modal-close-btn');
@@ -40,7 +37,6 @@ document.addEventListener('DOMContentLoaded', () => {
             modalOverlay.classList.remove('active');
         };
 
-        // Adiciona eventos de clique nos links para abrir os modais
         document.querySelectorAll('a[id]').forEach(link => {
             link.addEventListener('click', e => {
                 e.preventDefault();
@@ -56,12 +52,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Função para a página de LOGIN (index.html)
     const inicializarPaginaLogin = () => {
         const loginForm = document.querySelector('form:not(#emprestimoForm)');
         if (!loginForm) return;
 
-        // Filtro de teclado numérico para a senha
         const senhaInput = document.querySelector('input[placeholder="Digite sua senha"]');
         senhaInput.addEventListener('keydown', (event) => {
             const code = event.code;
@@ -74,7 +68,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
         
-        // Submit do formulário de login
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const cpf = loginForm.querySelector('input[placeholder="CPF"]').value;
@@ -94,11 +87,9 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
 
-        // Botão de navegação
         
     };
 
-    // Função para a página de EMPRÉSTIMOS
     const inicializarPaginaEmprestimos = () => {
         const emprestimoForm = document.getElementById('emprestimoForm');
         if (!emprestimoForm) return;
@@ -123,7 +114,6 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
 
-    // Executa todas as funções de inicialização
     inicializarMascaraCPF();
     inicializarModais();
     inicializarPaginaLogin();
