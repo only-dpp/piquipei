@@ -177,7 +177,6 @@ body {
     text-decoration: none;
 }
 
-/* --- ESTILOS PÁGINA DE CONFIRMAÇÃO --- */
 .confirmation-options {
     margin-top: 24px;
     margin-bottom: 32px;
@@ -234,7 +233,6 @@ body {
     font-weight: 300;
 }
 
-/* --- ESTILOS PÁGINA DE TOKEN --- */
 .reenviar-link {
     display: block;
     text-align: center;
@@ -252,7 +250,6 @@ body {
     pointer-events: none;
 }
 
-/* --- ESTILOS DO MODAL --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -312,7 +309,6 @@ body {
     line-height: 1.6;
 }
 
-/* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .right-panel {
         display: none;
