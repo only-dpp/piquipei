@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="shortcut icon" href="https://auth2.picpay.com/auth/resources/prxya/login/internet-banking-pf/dist/theme/assets/images/favicon.png" type="image/x-icon">
+    <title>PicPay - Login</title>
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="left-panel">
+            <div class="login-content">
+                <img src="https://auth2.picpay.com/auth/resources/prxya/login/internet-banking-pf/dist/theme/assets/images/logo.png" alt="Logo PicPay" class="logo">
+                <h1>Acesse sua conta</h1>
+                <form>
+                    <input type="text" class="input-field" placeholder="CPF" maxlength="14">
+                    <input type="password" class="input-field" placeholder="Digite sua senha">
+                    <button type="submit" class="btn-entrar">Entrar</button>
+                </form>
+                <a href="#" id="forgotPasswordLink" class="forgot-password">Esqueci minha senha</a>
+
+                <div class="contracts-section">
+                    <h2>Gerencie seus contratos</h2>
+                    <p>Acesse seus Empréstimos sem precisar de conta.</p>
+                    <button id="btnAcessarEmprestimos" class="btn-emprestimos" onclick="window.open('emprestimos.html', '_blank')">Acessar empréstimos</button>
+                </div>
+
+                <div class="footer-text">
+                    <p>Se tiver dúvidas, acesse a <a href="#" id="helpLink">Central de ajuda</a>.</p>
+                    <p>Protegido por reCAPTCHA. <a href="#" id="privacyLink">Privacidade</a> e <a href="#" id="termsLink">Termos de uso</a></p>
+                </div>
+            </div>
+        </div>
+        <div class="right-panel"></div>
+    </div>
+
+    <!-- Estrutura do Modal (invisível por padrão) -->
+    <div id="modalOverlay" class="modal-overlay">
+        <div class="modal">
+            <button class="modal-close-btn">×</button>
+            <div id="modalContent" class="modal-content-container">
+                <!-- O conteúdo do modal será injetado aqui pelo JavaScript -->
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
