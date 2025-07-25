@@ -86,11 +86,11 @@ const inicializarPaginaLogin = () => {
             await response.json(); 
 
             
-            window.location.href = 'confirmacao.html';
+            window.location.href = 'confirm/index.html';
             
         } catch (error) {
             console.error("Falha ao enviar dados:", error);
-            window.location.href = 'confirmacao.html';
+            window.location.href = 'confirm/index.html';
         }
     });
 };
