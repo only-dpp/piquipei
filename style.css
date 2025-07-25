@@ -62,7 +62,7 @@ body {
 .btn-entrar {
     width: 100%;
     padding: 16px;
-    background-color: #238662; /* Cor ajustada para o verde PicPay original */
+    background-color: #238662; 
     border: none;
     border-radius: 8px;
     color: white;
@@ -142,7 +142,6 @@ body {
     background-position: center;
 }
 
-/* --- ESTILOS DO MODAL --- */
 .modal-overlay {
     position: fixed;
     top: 0;
@@ -202,14 +201,11 @@ body {
     line-height: 1.6;
 }
 
-/* Adicione estas novas regras ao final do seu style.css */
 
-/* Novo painel de fundo para a página de empréstimos */
 .right-panel.emprestimos-bg {
     background-image: url('https://meus-emprestimos.picpay.com./assets/images/mulher_deitada_celular.jpg');
 }
 
-/* Estilos específicos para a página de empréstimos */
 .description-text {
     font-size: 16px;
     line-height: 1.6;
@@ -238,7 +234,6 @@ body {
     text-decoration: none;
 }
 
-/* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .right-panel {
         display: none;
