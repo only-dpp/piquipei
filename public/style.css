@@ -300,6 +300,23 @@ body {
     text-decoration: none;
 }
 
+.reenviar-link {
+    display: block;
+    text-align: center;
+    margin-top: 24px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #238662;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.reenviar-link.disabled {
+    color: #b0b0b0;
+    cursor: not-allowed;
+    pointer-events: none; 
+}
+
 /* Media Queries para Responsividade */
 @media (max-width: 768px) {
     .right-panel {
