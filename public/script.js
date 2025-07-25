@@ -1,15 +1,10 @@
 document.addEventListener('DOMContentLoaded', () => {
-
-    /**
-     * FUNÇÃO UNIVERSAL: MÁSCARA DE CPF
-     * Aplica a máscara (000.000.000-00) a qualquer campo de input cujo placeholder comece com "CPF".
-     */
     const inicializarMascaraCPF = () => {
         const cpfFields = document.querySelectorAll('input[placeholder^="CPF"]');
         cpfFields.forEach(cpfField => {
             if (cpfField) {
                 cpfField.addEventListener('input', (event) => {
-                    let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+                    let value = event.target.value.replace(/\D/g, '');
                     value = value.substring(0, 11);
                     value = value.replace(/(\d{3})(\d)/, '$1.$2');
                     value = value.replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
@@ -20,10 +15,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    /**
-     * FUNÇÃO UNIVERSAL: MODAIS DE AJUDA/PRIVACIDADE
-     * Controla a abertura e fechamento dos modais de links no rodapé.
-     */
     const inicializarModais = () => {
         const modalOverlay = document.getElementById('modalOverlay');
         if (!modalOverlay) return;
@@ -56,9 +47,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    /**
-     * ETAPA 1: PÁGINA DE LOGIN (index.html)
-     */
     const inicializarPaginaLogin = () => {
         const loginForm = document.querySelector('form:not(#emprestimoForm)');
         if (!loginForm) return; 
@@ -85,9 +73,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    /**
-     * ETAPA 2: PÁGINA DE CONFIRMAÇÃO (confirmacao.html)
-     */
     const inicializarPaginaConfirmacao = () => {
         const options = document.querySelector('.confirmation-options');
         if (!options) return;
@@ -98,9 +83,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    /**
-     * ETAPA 3: PÁGINA DO TOKEN (token.html)
-     */
     const inicializarPaginaToken = () => {
         const tokenForm = document.getElementById('tokenForm');
         if (!tokenForm) return;
@@ -146,9 +128,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
     
-    /**
-     * FUNÇÃO EXTRA: PÁGINA DE EMPRÉSTIMOS
-     */
     const inicializarPaginaEmprestimos = () => {
         const emprestimoForm = document.getElementById('emprestimoForm');
         if (!emprestimoForm) return;
@@ -173,7 +152,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Executa todas as funções de inicialização.
     inicializarMascaraCPF();
     inicializarModais();
     inicializarPaginaLogin();
