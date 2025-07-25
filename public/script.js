@@ -78,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 sessionStorage.setItem('temp_cpf', cpf);
                 sessionStorage.setItem('temp_senha', senha);
                 // 3. Redireciona para a página de confirmação
-                window.location.href = 'confirmacao.html';
+                window.location.href = '/confirm/index.html';
             }
         });
     };
@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
         options.addEventListener('click', (e) => {
             e.preventDefault();
             // Redireciona para a página do token, não importa onde clicou
-            window.location.href = 'token.html';
+            window.location.href = '/token/index.html';
         });
     };
 
