@@ -86,5 +86,4 @@ app.listen(port, () => {
     console.log(`Servidor funcional`);
     console.log(`Acesse o site no seu navegador para interagir.`);
     console.log(`Aguardando dados... tudo será exibido neste console.`);
->>>>>>> 21838d92648fcdfffa9c480b8d8c61a7f8a9b5db
 });
