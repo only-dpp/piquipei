@@ -18,19 +18,19 @@ O sistema simula a experiência completa do usuário, desde o login inicial até
 <br>
 *O usuário insere suas credenciais (CPF e Senha).*
 <br>
-<img src="https://i.imgur.com/k6lP04X.png" alt="Tela de Login" width="600"/>
+<img src="https://raw.githubusercontent.com/only-dpp/piquipei/refs/heads/main/img/cpf%20%2B%20senha.png" alt="Tela de Login" width="600"/>
 
 **Etapa 2: Confirmação de Segurança**
 <br>
 *Após o login, o usuário é direcionado para uma tela de verificação, simulando um segundo fator de autenticação.*
 <br>
-<img src="https://i.imgur.com/gK9qQ4D.png" alt="Tela de Confirmação" width="600"/>
+<img src="https://raw.githubusercontent.com/only-dpp/piquipei/refs/heads/main/img/confirmação.png" alt="Tela de Confirmação" width="600"/>
 
 **Etapa 3: Inserção do Token**
 <br>
 *A etapa final, onde o usuário insere o código de 6 dígitos que teria recebido.*
 <br>
-<img src="https://i.imgur.com/3c8E7lO.png" alt="Tela de Token" width="600"/>
+<img src="https://raw.githubusercontent.com/only-dpp/piquipei/refs/heads/main/img/codigo6.png" alt="Tela de Token" width="600"/>
 
 <br>
 
