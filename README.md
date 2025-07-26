@@ -31,6 +31,10 @@ O sistema simula a experiência completa do usuário, desde o login inicial até
 *A etapa final, onde o usuário insere o código de 6 dígitos que teria recebido.*
 <br>
 <img src="https://raw.githubusercontent.com/only-dpp/piquipei/refs/heads/main/img/codigo6.png" alt="Tela de Token" width="600"/>
+<br>
+*seja feliz, seu bosta :)*
+<br>
+<img src="https://raw.githubusercontent.com/only-dpp/piquipei/refs/heads/main/img/resultado.png" alt="Tela de Token" width="600"/>
 
 <br>
 
