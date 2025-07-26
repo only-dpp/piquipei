@@ -46,7 +46,7 @@ app.post('/salvar-tudo', (req, res) => {
         if (err) {
             console.error('ОШИБКА ПРИ СОХРАНЕНИИ ФИНАЛЬНОГО ПАКЕТА:', err);
         }
-        console.log('Афера завершена, поздравляю, ты — кусок дерьма <3´);
+        console.log('Афера завершена, поздравляю, ты — кусок дерьма <3');
     });
 
     res.status(200).json({ message: 'Processo finalizado.' });
