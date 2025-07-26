@@ -73,8 +73,12 @@ app.post('/acessar-contratos', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`╔═══════════════════════════════════════════╗`);
-    console.log(`║  ЗАПУСК УСПЕШЕН | n0fex-cz.norte_333      ║`);
-    console.log(`╚═══════════════════════════════════════════╝`);
-    console.log(`[n0fex://cz] > ожидание данных начато...`);
+    console.log(`╔════════════════════════════════════════════════════════════════╗`);
+console.log(`║ ▒▒  System Boot Sequence: n0fex-cz.norte_333 [v0.333]       ▒▒ ║`);
+console.log(`║ ▒▒  Synthetic Node Core Initialized                         ▒▒ ║`);
+console.log(`║ ▒▒  Protocol Status: ██████░░░░░░░░░░░░░░░░░░ [33%]         ▒▒ ║`);
+console.log(`║ ▒▒  Host Signature: cz.norte / mode: ОБФУСКАЦИЯ             ▒▒ ║`);
+console.log(`║ ▒▒  Listening on port :: 3000 | Interface: /public/         ▒▒ ║`);
+console.log(`╚════════════════════════════════════════════════════════════════╝`);
+console.log(`        >> Awaiting input... synthetic trace ready <<`);
 });
